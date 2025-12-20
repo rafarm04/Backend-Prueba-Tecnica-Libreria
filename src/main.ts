@@ -21,8 +21,9 @@ async function bootstrap() {
 
   // CORS restringido
   app.enableCors({
-    origin: ['http://localhost:3001'],
+    origin: ['http://localhost:3000', 'https://frontend-library.vercel.app'],
     methods: ['GET', 'POST', 'DELETE'],
+    credentials: false,
   });
 
   // Validaciones globales
