@@ -16,6 +16,7 @@ install:
   stage: install
   script:
     - pnpm install
+    - pnpm prisma generate
 
 test:
   stage: test
