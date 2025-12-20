@@ -5,6 +5,9 @@ stages:
   - test
   - build
 
+before_script:
+  - npm install -g pnpm
+
 cache:
   paths:
     - node_modules/
@@ -12,17 +15,14 @@ cache:
 install:
   stage: install
   script:
-    - npm install -g pnpm
     - pnpm install
 
 test:
   stage: test
   script:
-    - pnpm test --coverage
+    - pnpm test:cov
   artifacts:
     when: always
-    reports:
-      junit: junit.xml
     paths:
       - coverage/
 
