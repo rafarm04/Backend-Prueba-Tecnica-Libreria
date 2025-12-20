@@ -1,0 +1,32 @@
+image: node:20
+
+stages:
+  - install
+  - test
+  - build
+
+cache:
+  paths:
+    - node_modules/
+
+install:
+  stage: install
+  script:
+    - npm install -g pnpm
+    - pnpm install
+
+test:
+  stage: test
+  script:
+    - pnpm test --coverage
+  artifacts:
+    when: always
+    reports:
+      junit: junit.xml
+    paths:
+      - coverage/
+
+build:
+  stage: build
+  script:
+    - pnpm build
